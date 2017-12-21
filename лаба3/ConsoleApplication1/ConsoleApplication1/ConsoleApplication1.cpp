@@ -4,21 +4,17 @@
 #include<locale.h>  
 #include <iostream>
 #include <iomanip>
-#include "tree.h"
-#include "NODE.h"
+#include "tree.cpp"
+#include "NodeTree.cpp"
 #include <string>
 
 int main()
 {
 	using namespace std;
 	setlocale(LC_ALL, "RUS");
-
-
-	Tree<string> intTree;           /* создаем новой бинароное дерево с ключем типа string */
-	
+	Tree<string> intTree;           /* создаем новой бинароное дерево с ключем типа int */	
 	string a;
-
-	 int variant = 0;
+	int variant = 0;
 	while (variant != 6)
 	{
 		cout
@@ -36,20 +32,19 @@ int main()
 			cout << "Введено неккоректное значение. Повторите ввод \n\n";
 			cin >> variant;
 		}
-
 		switch (variant)
 		{
-		case 1: cout << "Введите значение элемента" << endl;   /* заполняем его */			
+		case 1: cout << "Введите значение элемента: " << endl;   /* заполняем его */			
 				cin >> a;
 				intTree.insert_node(a);
 			break;
 		case 2:
-			cout << "Введите узел, который нужно удалить";     /* попробуем удалить узел с ключем a */
+			cout << "Введите элемент, который нужно удалить: ";     /* попробуем удалить узел с ключем a */
 			cin >> a;
 			intTree.delete_node(intTree.find_node(intTree.get_root(), a));    /* если их несколько, то удалится первй найденный */
 			break;
 		case 3:
-			cout << "Введите узел, который нужно найти";     
+			cout << "Введите элемент, который нужно найти: ";     
 			cin >> a;
 			if (intTree.find_node(intTree.get_root(),a)!=0) cout << "Элемент найден"<<endl;
 			break;
@@ -57,20 +52,19 @@ int main()
 		{
 			int res = 0;
 			intTree.get_height(intTree.get_root(), res);
-			cout << "Высота дерева:" << res << endl;
+			cout << "Высота дерева: " << res << endl;
 			break;
 		}
 		case 5:
 		{
-			intTree.print(intTree.get_root());
-		
+			intTree.print(intTree.get_root());		
 			break;
 		}
 		case 6:
 		{
 			cout << "Выход из программы..." << endl;
 			exit(EXIT_SUCCESS);
-				break;
+			break;
 		}
 		default:
 
