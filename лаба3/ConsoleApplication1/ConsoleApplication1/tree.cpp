@@ -6,6 +6,7 @@ Tree<NODETYPE>::Tree()
 {
 	root = 0;                      /* в начале дерево пусто */
 }
+
 template<class NODETYPE>
 int Tree<NODETYPE>::insert_node(const NODETYPE &x)        /* вставляет узел */
 {
@@ -44,68 +45,85 @@ int Tree<NODETYPE>::insert_node(const NODETYPE &x)        /* вставляет узел */
 Затем копируем ключ и дополнительные данные из вершины y в вершину z, а саму вершину y удаляем */
 
 template<class NODETYPE>
-TreeNode<NODETYPE>* Tree<NODETYPE>::delete_node(TreeNode<NODETYPE> *z)   /* удаляет узел */
+TreeNode<NODETYPE>* Tree<NODETYPE>::delete_node(TreeNode<NODETYPE>* tree, int z)   /* удаляет узел */
 {
-	TreeNode<NODETYPE>* y;
-	TreeNode<NODETYPE>* x;
-	if (z->left == 0 || z->right == 0)               /* ищем вершину y, которую потом нужно вырезать из дерева*/
-		y = z;                                       /*если у z нет детей, то будем вырезать узел z*/
-	else
-		y = find_succ(z->get_data());               /*если есть дети, вырезаем следующий за z элемент*/
-	if (y->left != 0)                               /* x - указатель на существующего ребенка y или 0 если детей нет */
-		x = y->left;
-	else
-		x = y->right;
-	if (x != 0)
-		x->parent = y->parent;                      /*если у есть дети, то соединяем родителей x и y */
-	if (y->parent == 0)
-		root = x;                                   /*если у y нет родителя значит x становится корнем дерева*/
-	else
+	if (tree == NULL)
+		return tree;
+
+	if (z < tree->get_data())
 	{
-		if (y == (y->parent)->left)                /*если y-левый ребенок*/
-			(y->parent)->left = x;                 /*левому ребенку y присваиваем x*/
+		(*tree).left = delete_node((*tree).left, z);     //если текущий узел больше заданного, то двигаемся влево
+	}
+	else
+		if (z > tree->get_data())
+		{
+			(*tree).right = delete_node((*tree).right, z);  //если текущий узел меньше заданного, то двигаемся вправо
+		}
 		else
-			(y->parent)->right = x;                /*если y-правый ребенок ребенок*//*правому ребенку y присваиваем x */
-	}
-	if (y != z)                                    /* если мы вырезали вершину, отличную от z, то ее данные перемещаем в z */
-		z->data = y->get_data();
-	return y;
+			if ((tree->left != NULL) & (tree->right != NULL))    //если есть правый и левый потомки
+			{
+				tree->data = find_min(tree->right)->get_data();   //заменяем минимальным элементом из правого поддерева 			
+				tree->right = delete_node(tree->right, tree->get_data()); 	//рекурсивно удаляем этот минимальный элемент
+			}
+			else
+				if (tree->left != NULL)   //если есть  левый потомок
+				{
+					if (tree->parent == 0)
+					{
+						if (tree->left != 0)
+							tree->left->parent = tree->parent;
+						root = tree->left;
+
+					}
+					else
+						tree = tree->left;
+
+				}
+				else          //если нет левого потомка
+				{
+					if (tree->parent == 0)
+					{
+						if (tree->right != 0)
+							tree->right->parent = tree->parent;
+						root = tree->right;
+
+					}
+					else
+						tree = tree->right;
+
+				}
+
+	return tree;
+}
+
+/*поиск минимального элемента*/
+template<class NODETYPE>
+TreeNode<NODETYPE>* Tree<NODETYPE>::find_min(TreeNode<NODETYPE>* x)
+{
+	while (x->left != 0)
+		x = x->left;
+	return x;
 }
 
 
-
 template<class NODETYPE>
-TreeNode<NODETYPE>* Tree<NODETYPE>::find_succ(const NODETYPE & val) /* находит следующий элемент */
+int Tree<NODETYPE>::get_height(TreeNode<NODETYPE>* n)/* вычисяет высоту дерева */
 {
-	TreeNode<NODETYPE>* x = find_node(root, val);                     /* получим указатель на узел с ключем val */
-	TreeNode<NODETYPE>* y;
-	if (x == 0)                                                       /*если у полученного узла нет детей, возвращаем ноль*/
+	if (n == 0)
 		return 0;
-	if (x->right != 0)		       /* если у него есть правые дети, то следующий элемент - минимальный в правом поддереве */
-	{
-		while (x->left != 0)
-			x = x->left;
+	int left, right;
+	if (n->left != NULL) {
+		left = get_height(n->left);
 	}
-
-	y = x->parent;
-	while (y != 0 && x == y->right)                                   /* иначе - идем вверх и ищем первый элемент, являющийся левым
-																	  потомком своего родителя */
-	{
-		x = y;
-		y = y->parent;
+	else
+		left = 0;
+	if (n->right != NULL) {
+		right = get_height(n->right);
 	}
-	return y;
-}
-
-template<class NODETYPE>
-void Tree<NODETYPE>::get_height(TreeNode<NODETYPE>* n, int &res)/* вычисяет высоту дерева и его размеры */
-{
-	if (n != 0)
-	{
-		get_height(n->left, res);
-		res++;
-		get_height(n->right, res);
-	}
+	else
+		right = 0;
+	int max = left > right ? left : right;
+	return max + 1;
 }
 
 template<class NODETYPE>

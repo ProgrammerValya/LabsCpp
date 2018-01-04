@@ -1,9 +1,11 @@
 #pragma once
-template <class NODETYPE> class TreeNode //шаблон-описание узлов дерева
+
+template <class NODETYPE> 
+class TreeNode //шаблон-описание узлов дерева
 {
-	friend class Tree<NODETYPE>;   //доступ к приватным элементам классу Tree
+friend class Tree<NODETYPE>;   //доступ к приватным элементам классу Tree */
 public:
-	TreeNode(const NODETYPE &);  //конструктору передаётся ключ
+	TreeNode(const NODETYPE &a);  //конструктору передаётся ключ
 	NODETYPE get_data();
 protected:
 	TreeNode* left;           /* указатель на левого ребенка */
@@ -11,7 +13,4 @@ protected:
 	TreeNode* parent;         /* указатель на родителя */
 	NODETYPE data;            /* ключ или значение узла*/
 };
-
-
-
 

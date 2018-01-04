@@ -12,8 +12,8 @@ int main()
 {
 	using namespace std;
 	setlocale(LC_ALL, "RUS");
-	Tree<string> intTree;           /* создаем новой бинароное дерево с ключем типа int */	
-	string a;
+	Tree<int> intTree;           /* создаем новой бинароное дерево с ключем типа int */	
+	int a;
 	int variant = 0;
 	while (variant != 6)
 	{
@@ -41,7 +41,9 @@ int main()
 		case 2:
 			cout << "Введите элемент, который нужно удалить: ";     /* попробуем удалить узел с ключем a */
 			cin >> a;
-			intTree.delete_node(intTree.find_node(intTree.get_root(), a));    /* если их несколько, то удалится первй найденный */
+			intTree.delete_node(intTree.get_root(),a);    /* если их несколько, то удалится первый найденный */
+			cout << "Результат" << endl;
+			intTree.print(intTree.get_root());
 			break;
 		case 3:
 			cout << "Введите элемент, который нужно найти: ";     
@@ -50,9 +52,7 @@ int main()
 			break;
 		case 4:
 		{
-			int res = 0;
-			intTree.get_height(intTree.get_root(), res);
-			cout << "Высота дерева: " << res << endl;
+			cout << "Высота дерева: " << intTree.get_height(intTree.get_root()) << endl;
 			break;
 		}
 		case 5:
