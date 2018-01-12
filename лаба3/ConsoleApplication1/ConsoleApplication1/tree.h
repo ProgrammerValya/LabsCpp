@@ -9,16 +9,13 @@ class Tree
 {
 public:
 	Tree();                                                    /* конструктор */
-	int insert_node(const NODETYPE &);                         /* вставляет узел */
-	TreeNode<NODETYPE>* delete_node(TreeNode<NODETYPE>* tree, int z);     /* удаляет узел */
-	void print(TreeNode<NODETYPE>*);                           /* печатает все ключи в неубывающем порядке */
-	TreeNode<NODETYPE>* find_min(TreeNode<NODETYPE>* x);       /*поиск минимального элемента*/
-
-	TreeNode<NODETYPE>* find_node(TreeNode<NODETYPE>*, const NODETYPE &); /*поиск элемента*/
-
-	int get_height(TreeNode<NODETYPE>* n);                         /* вычисяет высоту дерева и его размеры */
-	TreeNode<NODETYPE> *get_root();                             /* возвращает указатель на корень дерева */
+	TreeNode<NODETYPE>* get_root();   /* возвращает указатель на корень дерева */
+	void delete_node1(int z);				/* удаляет узел */
+	int insert_node(const NODETYPE &x);        /* вставляет узел */
+	int get_height(TreeNode<NODETYPE>* n);		/*высота дерева*/
+	TreeNode<NODETYPE>* find_node(TreeNode<NODETYPE>* n, const NODETYPE & val);/*поиск элемента*/
+	void print(TreeNode<NODETYPE>* n);			/* печатает все ключи в неубывающем порядке */
 private:
 	TreeNode<NODETYPE> *root;                                   /*корень */
+	
 };
-

@@ -1,11 +1,6 @@
-﻿  tree.cpp
-  NodeTree.cpp
-c:\учеба\лабы\лабы c++\лаба3\consoleapplication1\consoleapplication1\nodetree.h(6): error C2059: синтаксическая ошибка: <
-  c:\учеба\лабы\лабы c++\лаба3\consoleapplication1\consoleapplication1\nodetree.h(15): note: см. ссылку на создание экземпляров класса шаблон при компиляции "TreeNode<NODETYPE>"
-c:\учеба\лабы\лабы c++\лаба3\consoleapplication1\consoleapplication1\nodetree.h(6): error C2238: непредвиденные лексемы перед ";"
-  ConsoleApplication1.cpp
-c:\учеба\лабы\лабы c++\лаба3\consoleapplication1\consoleapplication1\nodetree.cpp(8): error C2995: NODETYPE TreeNode<NODETYPE>::get_data(void): шаблон функции уже определен
-  c:\учеба\лабы\лабы c++\лаба3\consoleapplication1\consoleapplication1\nodetree.h(9): note:  см. объявление "TreeNode<NODETYPE>::get_data"
-c:\учеба\лабы\лабы c++\лаба3\consoleapplication1\consoleapplication1\nodetree.cpp(14): error C2995: TreeNode<NODETYPE>::TreeNode(const NODETYPE &): шаблон функции уже определен
-  c:\учеба\лабы\лабы c++\лаба3\consoleapplication1\consoleapplication1\nodetree.h(8): note:  см. объявление "TreeNode<NODETYPE>::TreeNode"
+﻿  ConsoleApplication1.cpp
   Создание кода...
+  Пропуск... (изменения не обнаружены)
+  NodeTree.cpp
+  ConsoleApplication1.vcxproj -> C:\учеба\лабы\лабы c++\лаба3\ConsoleApplication1\Debug\ConsoleApplication1.exe
+  ConsoleApplication1.vcxproj -> C:\учеба\лабы\лабы c++\лаба3\ConsoleApplication1\Debug\ConsoleApplication1.pdb (Full PDB)

@@ -41,14 +41,16 @@ int main()
 		case 2:
 			cout << "¬ведите элемент, который нужно удалить: ";     /* попробуем удалить узел с ключем a */
 			cin >> a;
-			intTree.delete_node(intTree.get_root(),a);    /* если их несколько, то удалитс€ первый найденный */
+			intTree.delete_node1(a);    /* если их несколько, то удалитс€ первый найденный */
 			cout << "–езультат" << endl;
+			//intTree.print(intTree.get_root());
 			intTree.print(intTree.get_root());
 			break;
 		case 3:
 			cout << "¬ведите элемент, который нужно найти: ";     
 			cin >> a;
 			if (intTree.find_node(intTree.get_root(),a)!=0) cout << "Ёлемент найден"<<endl;
+			else  cout << "Ёлемент не найден" << endl;
 			break;
 		case 4:
 		{
@@ -57,7 +59,7 @@ int main()
 		}
 		case 5:
 		{
-			intTree.print(intTree.get_root());		
+			intTree.print(intTree.get_root());
 			break;
 		}
 		case 6:
